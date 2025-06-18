@@ -10,5 +10,3 @@ A basic full-stack web application intended for my learning experience.
 - Docker
 - DigitalOcean
 - Git + GitHub
-- Redis
-- Nginx
