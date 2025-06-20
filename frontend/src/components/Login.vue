@@ -1,29 +1,21 @@
 <script setup>
     import { ref } from 'vue'
-    import axios from 'axios'
-    import { useRouter } from 'vue-router'
+    import useAuthStore from '@/stores/auth'
 
-    const router = useRouter()
+    const authStore = useAuthStore()
 
     const data = ref({
         username: '',
         password: '',
     })
 
-    // Simple function using Axios to hit /api/token/ endpoint
-    async function login() {
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/token/', {
-                username: data.value.username,
-                password: data.value.password
-            })
-            // Setting tokens in local storage
-            localStorage.setItem('access_token', response.data.access)
-            localStorage.setItem('refresh_token', response.data.refresh)
-            // Redirect to homepage after successful login
-            router.push('/home')
-        } catch (error) {
-            console.log('Error occurred: ', error)
+    // Simple function using our Pinia authStore with Axios to login with credentials
+    async function handleLogin() {
+        // Pass in our username and password into our authStore method
+        const result = await authStore.login(data.value.username, data.value.password)
+        console.log(data.value.username, data.value.password)
+        if (!result) {
+            console.log('Login failed...')
         }
     }
 
@@ -32,7 +24,7 @@
 <template>
     <div>
         <h1>Login</h1>
-        <form @submit.prevent="login">
+        <form @submit.prevent="handleLogin">
             <div>
                 <label for="username">Username: </label>
                 <input type="text" id="username" v-model="data.username" />
