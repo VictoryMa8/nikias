@@ -17,9 +17,10 @@ api.interceptors.request.use(config => {
 })
 
 // Response interceptor that handles token refreshes/logout
-api.interceptors.response.use(response => response,
-    async error => {
-        // If token is expired or invalid
+api.interceptors.response.use(function (response) {
+    return response;
+    }, function (error) {
+        // If token is expired or invalid, push user to login page
         if (error.response.status === 401) {
             localStorage.removeItem('access_token')
             localStorage.removeItem('refresh_token')
