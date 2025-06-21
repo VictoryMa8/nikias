@@ -23,7 +23,7 @@
 
 <template>
     <div class="content">
-        <h1 class="title">Welcome to Nikias, the social media platform for peace of mind 🌿</h1>
+        <h1 class="title">Welcome to Nikias, the social media platform for your peace of mind 🌿</h1>
         <img src="../assets/images/logo.png">
         <div class="login-items">
             <h2>Login to start connecting with your friends 🫂</h2>
@@ -39,16 +39,12 @@
                 <button type="submit">Login</button>
             </form>
         </div>
-        <button>Sign Up</button>
+        <RouterLink class="other-buttons" to="sign-up">Sign Up</RouterLink>
+        <RouterLink class="other-buttons" to="contact">Contact Us</RouterLink>
     </div>
 </template>
 
 <style scoped>
-    template {
-        margin: 0px;
-        padding: 0px;
-    }
-
     .content {
         display: flex;
         flex-direction: column;
@@ -87,7 +83,6 @@
         background-color: #02644F;
         margin: 20px;
         padding: 10px;
-        border: 1px solid #02251e;
         border-radius: 15px;
     }
 
@@ -141,25 +136,28 @@
         transition: background-color, 0.2s linear;
         transition: color, 0.2s linear;
         font-family: 'EB Garamond', 'Times New Roman', Times, serif;
-        border: 1px solid #02251e;
+        border: none;
         border-radius: 15px;
     }
 
-    .content button {
-        margin: 0px 0px 20px 0px;
-        width: 300px;
-        height: 40px;
+    .other-buttons {
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        width: 200px;
+        height: 30px;
         font-size: 1.2rem;
         background-color: #1f7f6a;
+        text-align: center;
+        text-decoration: none;
         color: #FFFFFF;
         transition: background-color, 0.2s linear;
         transition: color, 0.2s linear;
         font-family: 'EB Garamond', 'Times New Roman', Times, serif;
-        border: 1px solid #02251e;
+        border: none;
         border-radius: 15px;
     }
 
-    .login-items form button:hover, .content button:hover {
+    .login-items form button:hover, .other-buttons:hover {
         background-color: #02C39A;
         color: #000000;
         cursor: pointer;
