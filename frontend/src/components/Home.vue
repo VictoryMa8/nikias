@@ -1,6 +1,16 @@
 <script setup>
+    import { onMounted } from 'vue'
     import useAuthStore from '@/stores/auth'
+    import usePostsStore from '@/stores/posts'
+
     const authStore = useAuthStore()
+    const postsStore = usePostsStore()
+
+    // When component mounts, fetch posts
+    onMounted(() => {
+        postsStore.fetchPosts()
+        console.log('Posts: ', postsStore.posts)
+    })
 
     // Just using our Pinia authStore with Axios similar to how we logged in
     function handleLogout() {
@@ -12,6 +22,17 @@
     <div class="content">
         <h1>Welcome to the home. You are logged in.</h1>
         <button class="sign-out" @click="handleLogout">Sign Out</button>
+        <!-- Looping through all posts -->
+        <div v-if="postsStore.posts.length > 0">
+            <div v-for="post in postsStore.posts" :key="post.created_at">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.description }}</p>
+                <p>{{ post.author_username }}</p>
+                <p>{{ post.created_at }}</p>
+            </div>
+        </div>
+        <!-- There are no posts found -->
+        <div v-else>No posts found. Be the first to create one!</div>
     </div>
 </template>
 
