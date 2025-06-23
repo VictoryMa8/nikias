@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from .models import Profile, Friendship, Board, Post
 from .serializers import ProfileSerializer, FriendshipSerializer, BoardSerializer, PostSerializer

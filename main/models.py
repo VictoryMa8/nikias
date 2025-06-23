@@ -165,7 +165,9 @@ class Post(models.Model):
     # An image for the post
     image = models.ImageField(
         upload_to="posts/",
-        help_text="An image for the post"
+        help_text="An image for the post (optional)",
+        blank=True,
+        null=True,
     )
 
     # The author of the post
