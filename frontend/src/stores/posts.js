@@ -20,9 +20,20 @@ const usePostsStore = defineStore('posts', () => {
         }
     }
 
+    async function createPost(newPostData) {
+        try {
+            const response = await api.post('/posts/', newPostData)
+            // Add new post to beginning
+            posts.value.unshift(response.data) 
+        } catch (error) {
+            console.log('Error creating post: ', error)
+        }
+    }
+
     return {
         posts,
-        fetchPosts
+        fetchPosts,
+        createPost
     }
 })
 

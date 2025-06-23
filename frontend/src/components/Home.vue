@@ -1,5 +1,6 @@
 <script setup>
     import useAuthStore from '@/stores/auth'
+    import NewPost from './NewPost.vue'
     import Posts from './Posts.vue'
     import Profile from './Profile.vue'
     const authStore = useAuthStore()
@@ -8,12 +9,16 @@
     function handleLogout() {
         authStore.logout()
     }
+
+    console.log('Current user: ', authStore.user)
+
 </script>
 
 <template>
     <div class="content">
-        <h1>Welcome to the home. You are logged in.</h1>
+        <h1>Welcome home, {{ authStore.user || 'user' }}.</h1>
         <button class="sign-out" @click="handleLogout">Sign Out</button>
+        <NewPost></NewPost>
         <Posts></Posts>
         <Profile></Profile>
     </div>

@@ -30,8 +30,8 @@
         <div class="post" v-for="post in postsStore.posts" :key="post.created_at">
             <h2>{{ post.title }}</h2>
             <p>{{ post.description }}</p>
-            <p>{{ post.author_username }}</p>
-            <p>{{ formatDate(post.created_at) }}</p>
+            <p>Author: {{ post.author }}</p>
+            <p>Posted: {{ formatDate(post.created_at) }}</p>
         </div>
     </div>
     <!-- There are no posts found -->
@@ -43,11 +43,14 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
+        justify-content: center;
+        align-items: center;
         background-color: #186352;
         color: #ffffff;
         padding: 20px;
         border-radius: 15px;
         gap: 10px;
+        margin: 0 10% 0 10%;
     }
     .post {
         border: 1px #ffffff solid;
