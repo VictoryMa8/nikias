@@ -8,6 +8,7 @@ const useAuthStore = defineStore('auth', () => {
     const accessToken = ref(localStorage.getItem('access_token'))
     const refreshToken = ref(localStorage.getItem('refresh_token'))
     const user = ref(null)
+    const profiles = ref([])
     // Getters, is the user authenticated?
     const isAuthenticated = computed(() => accessToken.value)
     // Actions (login and logout)
@@ -37,13 +38,30 @@ const useAuthStore = defineStore('auth', () => {
         router.push('/login')
     }
 
+    // Fetch profile of the current user
+    async function fetchProfiles() {
+        try {
+            const authStore = useAuthStore()
+            const response = await api.get('/profiles/', {
+                headers: {
+                    'Authorization': `Bearer ${authStore.accessToken}`
+                }
+            })
+            profiles.value = response.data
+        } catch (error) {
+            console.log('Error fetching user profiles: ', error)
+        }
+    }
+
     return {
         accessToken,
         refreshToken,
         user,
+        profiles,
         isAuthenticated,
         login,
-        logout
+        logout,
+        fetchProfiles
     }
 })
 

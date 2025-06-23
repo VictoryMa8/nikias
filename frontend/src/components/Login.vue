@@ -133,8 +133,8 @@
         font-size: 1.2rem;
         background-color: #034033;
         color: #FFFFFF;
-        transition: background-color, 0.2s linear;
-        transition: color, 0.2s linear;
+        transition: background-color, 0.4s ease;
+        transition: color, 0.4s ease;
         font-family: 'EB Garamond', 'Times New Roman', Times, serif;
         border: none;
         border-radius: 15px;
@@ -150,8 +150,8 @@
         text-align: center;
         text-decoration: none;
         color: #FFFFFF;
-        transition: background-color, 0.2s linear;
-        transition: color, 0.2s linear;
+        transition: background-color, 0.4s ease;
+        transition: color, 0.4s ease;
         font-family: 'EB Garamond', 'Times New Roman', Times, serif;
         border: none;
         border-radius: 15px;
